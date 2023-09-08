@@ -1,0 +1,22 @@
+<main class="homeMain">
+  <form #searchForm="ngForm" (ngSubmit)="onSubmitSearchForm(searchForm)">
+    <select name="searchType" [(ngModel)]="searchType" required>
+      <option value="" disabled selected>Choose</option>
+      <option value="person">Person</option>
+      <option value="planet">Planet</option>
+    </select>
+    <input type="text" name="inputValue" [(ngModel)]="inputValue" required placeholder="Enter a name">
+    <button type="submit" [disabled]="!searchType || !inputValue">Search</button>
+  </form>
+  <div class="p-and-p">
+    <div (click)="onCharacterClick()">
+      <img src="assets/people/jar jar binks.jpg" alt="Jar Jar">
+      <h1>Browse Characters</h1>
+    </div>
+
+    <div (click)="onPlanetClick()">
+      <img src="assets/tatooine.jpg" alt="Planet">
+      <h1>Browse Planets</h1>
+    </div>
+  </div>
+</main>
