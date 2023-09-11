@@ -13,16 +13,15 @@ const routes: Routes = [
   
   { path: 'people', component: PeopleListComponent, canActivate: [HeaderGuard] },
   { path: 'person/:id', component: PeopleDetailsComponent, canActivate: [HeaderGuard] },
-  { path: 'person', redirectTo: '/people' },
+  { path: 'person', component: PeopleDetailsComponent, canActivate: [HeaderGuard]},
   { path: 'people/:id', component: PeopleListComponent, canActivate: [HeaderGuard] },
 
   { path: 'planets', component: PlanetsListComponent, canActivate: [HeaderGuard] },
   { path: 'planet/:id', component: PlanetsDetailsComponent, canActivate: [HeaderGuard] },
-  { path: 'planet', redirectTo: '/planets' },
+  { path: 'planet',  component: PlanetsDetailsComponent, canActivate: [HeaderGuard]},
   { path: 'planets/:id', component: PlanetsListComponent, canActivate: [HeaderGuard] },
 
-  { path: 'not-found', component: NotFoundComponent, canActivate: [HeaderGuard] },
-  { path: '**', redirectTo: '/not-found' },
+  { path: '**',  component: NotFoundComponent, canActivate: [HeaderGuard] },
 ]
 
 @NgModule({
