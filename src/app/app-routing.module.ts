@@ -1,12 +1,13 @@
-import { NgModule } from '@angular/core'
-import { RouterModule, Routes } from '@angular/router'
-import { PeopleDetailsComponent } from './components/people/people-details/people-details.component'
-import { PeopleListComponent } from './components/people/people-list/people-list.component'
-import { PlanetsDetailsComponent } from './components/planets/planets-details/planets-details.component'
-import { PlanetsListComponent } from './components/planets/planets-list/planets-list.component'
-import { HomeComponent } from './components/home/home.component'
-import { NotFoundComponent } from './components/not-found/not-found.component'
-import { HeaderGuard } from './guards/header.guard'
+import { NgModule } from '@angular/core';
+import { RouterModule, Routes } from '@angular/router';
+import {HashLocationStrategy, LocationStrategy} from '@angular/common';
+import { PeopleDetailsComponent } from './components/people/people-details/people-details.component';
+import { PeopleListComponent } from './components/people/people-list/people-list.component';
+import { PlanetsDetailsComponent } from './components/planets/planets-details/planets-details.component';
+import { PlanetsListComponent } from './components/planets/planets-list/planets-list.component';
+import { HomeComponent } from './components/home/home.component';
+import { NotFoundComponent } from './components/not-found/not-found.component';
+import { HeaderGuard } from './guards/header.guard';
 
 const routes: Routes = [
   { path: '', component: HomeComponent, canActivate: [HeaderGuard], pathMatch: 'full' },
@@ -22,10 +23,11 @@ const routes: Routes = [
   { path: 'planets/:id', component: PlanetsListComponent, canActivate: [HeaderGuard] },
 
   { path: '**',  component: NotFoundComponent, canActivate: [HeaderGuard] },
-]
+];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [RouterModule.forRoot(routes, { useHash: true })], // Set useHash to true
   exports: [RouterModule],
+  providers: [{ provide: LocationStrategy, useClass: HashLocationStrategy }] // Provide HashLocationStrategy
 })
 export class AppRoutingModule { }
